@@ -15,6 +15,8 @@ let USER = {
     }
 }
 
-const API_URL = "https://todo-api-vice.herokuapp.com"
+// const API_URL = "https://todo-api-vice.herokuapp.com"
+const API_URL = "http://localhost:4000/api"
+
 
 export { USER, API_URL };

@@ -5,12 +5,13 @@ import * as registerCalls from './register';
 
 export function getConfig(method = 'GET', body) {
     
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json; charset=utf-8");
+    headers.append("Authorization", USER.token || "");
+
+    console.log(JSON.stringify(body));
     return {
-        headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json',
-            'Authorization': USER.token || ''
-        },
+        headers,
         method,
         body: JSON.stringify(body),
         mode:'cors'

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { Button, Input, ButtonText } from '../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import * as authActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -67,26 +67,31 @@ class Login extends React.Component {
         // .catch(() => this.setState({ loading: false }));
     }
 
-    // componentWillUpdate(nextProps) {
+    componentWillUpdate(nextProps) {
     
-    //     if(nextProps.auth.error) {
-    //         if(this.state.loading) {
-    //             this.setState({ loading: false })
-    //         }
+        if(nextProps.auth.error) {
+            if(this.state.loading) {
+                this.setState({ loading: false })
+            }
 
-    //         if(this.props.auth.isAuthenticating && !this.state.loading)
-    //             alert('Usuário ou senha incorreto.');
-    //     }
+            if(this.props.auth.isAuthenticating && !this.state.loading)
+                alert('Usuário ou senha incorreto.');
+        }
 
-    //     return true;
-    // }
+        if(this.props.auth.isAuthenticating && nextProps.user.isAuthenticated) {
+            this.props.history.push("/");
+            return false;
+        }
+
+        return true;
+    }
 
     handleLogin() {        
-        // this.props.authActions.auth(this.state);
+        this.props.authActions.auth(this.state);
     }
 
     renderLoginButtonChildren() {
-        if(!false)
+        if(!this.props.auth.isAuthenticating)
             return <ButtonText>Entrar</ButtonText>;
         else
             return <span>Loading..</span>
@@ -133,12 +138,12 @@ class Login extends React.Component {
     }
 }
 
-// export default connect(
-//     state => ({
-//         auth: state.auth
-//     }),
-//     dispatch => ({
-//         authActions: bindActionCreators(authActions, dispatch)
-//     })
-// )(Login);
-export default Login;
+export default withRouter(connect(
+    state => ({
+        auth: state.auth,
+        user: state.user
+    }),
+    dispatch => ({
+        authActions: bindActionCreators(authActions, dispatch)
+    })
+)(Login));

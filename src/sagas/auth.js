@@ -5,7 +5,7 @@ import API from '../services/api';
 function* doAuth(action) {
   try{
     const data = yield API.auth(action.payload);
-    
+    console.log(data);
     if(data.error)
       throw data;
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Button, Input, ButtonText } from '../shared';
-
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as registerActions from '../../actions/register';
@@ -49,31 +48,33 @@ class Register extends React.Component {
             username: ''
         }
 
-        // this.handleRegister = this.handleRegister.bind(this);
-        // this.renderRegisterButtonChildren = this.renderRegisterButtonChildren.bind(this);
+        this.handleRegister = this.handleRegister.bind(this);
+        this.renderRegisterButtonChildren = this.renderRegisterButtonChildren.bind(this);
     }
 
     handleRegister() {
-        // this.props.registerActions.signUp({
-        //     username: this.state.username,
-        //     name: this.state.name,
-        //     password: this.state.password
-        // });
+        this.props.registerActions.signUp({
+            user: {
+                username: this.state.username,
+                name: this.state.name,
+                password: this.state.password
+            }
+        });
     }
 
-    // componentWillUpdate(nextProps) {
-    //     if(nextProps.user.error && this.props.user.isRegistering) {
-    //         Alert.alert(nextProps.user.error);
-    //     }
+    componentWillUpdate(nextProps) {
+        if(nextProps.user.error && this.props.user.isRegistering) {
+            alert(nextProps.user.error);
+        }
 
-    //     return true;
-    // }
+        return true;
+    }
 
     renderRegisterButtonChildren() {
-        // if(!this.props.user.isRegistering)
+        if(!this.props.user.isRegistering)
             return <ButtonText>Entrar</ButtonText>;
-        // else
-        //     return <ActivityIndicator size="small"/>
+        else
+            return <span>Loading...</span>
     }
 
     render() {
@@ -85,17 +86,17 @@ class Register extends React.Component {
                 <FormWrapper>
                     <Input 
                         placeholder={"Usuário"}
-                        onChange={(username) => this.setState({username})}
+                        onChange={({target}) => this.setState({username: target.value})}
                         value={this.state.username}
                     />
                     <Input 
                         placeholder={"Nome"}
-                        onChange={(name) => this.setState({name})}
+                        onChange={({target}) => this.setState({name: target.value})}
                         value={this.state.name}
                     />
                     <Input 
                         placeholder={"Senha"}
-                        onChange={(password) => this.setState({password})}
+                        onChange={({target}) => this.setState({password: target.value})}
                         value={this.state.password}
                     />
                     <Button text={"Registrar"}
@@ -111,12 +112,11 @@ class Register extends React.Component {
     }
 }
 
-// export default connect(
-//     state => ({
-//         user: state.user
-//     }),
-//     dispatch => ({
-//         registerActions: bindActionCreators(registerActions, dispatch)
-//     })
-// )(Register);
-export default Register;
+export default withRouter(connect(
+    state => ({
+        user: state.user
+    }),
+    dispatch => ({
+        registerActions: bindActionCreators(registerActions, dispatch)
+    })
+)(Register));

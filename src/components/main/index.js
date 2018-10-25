@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Colors } from '../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -53,9 +54,16 @@ class Main extends React.Component {
     }
 
     render() {
+        if (!this.props.user.isAuthenticated)
+            return <Redirect
+                        to={{
+                            pathname: "/auth",
+                        }}
+                    />
         return (
             <Container>
-                <Header>                    
+                <Header>   
+                    <div></div>                 
                     <Text>Tasks</Text>
                     <SignOutButton onClick={this.handleSignOut}>
                         <FontAwesomeIcon icon="sign-out-alt" style={{color: 'white', fontSize: "22px"}}/>
@@ -69,10 +77,11 @@ class Main extends React.Component {
     }
 }
 
-// export default connect(
-//     state => ({}),
-//     dispatch => ({
-//         appActions: bindActionCreators(appActions, dispatch)
-//     })
-// )(Main);
-export default Main;
+export default withRouter(connect(
+    state => ({
+        user: state.user
+    }),
+    dispatch => ({
+        appActions: bindActionCreators(appActions, dispatch)
+    })
+)(Main));
