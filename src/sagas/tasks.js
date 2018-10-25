@@ -1,7 +1,7 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import * as types from '../actions';
 import API from '../services/api';
-import { Actions } from 'react-native-router-flux';
+
 
 function* fetchTasks(action) {
     try {
@@ -15,9 +15,9 @@ function* fetchTasks(action) {
 function* fetchTasksAuth(action) {
     try {
         yield fetchTasks({ user: action.user });
-        Actions.main();
+        // Actions.main();
         yield put({ type: types.AUTH_SUCCESS, user: action.user });
-    } catch (exc) {
+    } catch (ex) {
         yield put({ type: types.AUTH_FAIL, error: ex });
     }
 }
@@ -38,7 +38,7 @@ function* addTask(action) {
 function* removeTask(action) {
     try {
         yield API.removeTask(action.task);
-        yield put({ type: types.TASK_REMOVE_SUCCESS, task: actionm.task });
+        yield put({ type: types.TASK_REMOVE_SUCCESS, task: action.task });
     } catch (exc) {
         yield put ({ type: types.TASK_REMOVE_FAIL, error: exc });
     }

@@ -7,7 +7,7 @@ export async function auth(credentials) {
         `${API_URL}/auth`,
         getConfig('POST', credentials)
     );
-
+    console.log(response);
     return response.json();
     
 }

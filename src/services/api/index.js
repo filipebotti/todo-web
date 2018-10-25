@@ -13,7 +13,7 @@ export function getConfig(method = 'GET', body) {
         },
         method,
         body: JSON.stringify(body),
-        mode:'cors'
+        mode:'no-cors'
     }
 }
 export { USER, API_URL }
