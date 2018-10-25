@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { Button, Input, ButtonText } from '../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import * as authActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -20,16 +21,16 @@ const Container = styled.div`
 
 const Header = styled.div`
 	flexDirection: row;
-	display: flex;
+    display: flex;
+    margin-bottom: 2rem;
 `;
 
-const FormWrapper = styled.div`
-    height: 30%;
-    width: 15%;
+const FormWrapper = styled.div`    
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
 `;
 
 const HeaderTitle = styled.span`
@@ -124,10 +125,9 @@ class Login extends React.Component {
                         >
                             {this.renderLoginButtonChildren()}
                         </Button>
-                    </FormWrapper>
-                    <div>
-                        <a href="#" style={{color: '#424242', textDecoration: "none"}}>Cadastre-se</a>                        
-                    </div>
+                    </FormWrapper>                    
+                    <Link to="/register" style={{color: '#424242', textDecoration: "none"}}>Cadastre-se</Link>                        
+                    
                 </Container>
             );
     }
