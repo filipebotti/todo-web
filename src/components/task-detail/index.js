@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Button, Input, ButtonText } from '../shared';
+import { Button, Input, ButtonText, Colors } from '../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Redirect, withRouter, Link } from 'react-router-dom';
 import * as taskActions from '../../actions/task';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Dots from 'react-activity/lib/Dots';
+import 'react-activity/lib/Dots/Dots.css';
 
 const Container = styled.div`
     
@@ -82,7 +84,7 @@ class TaskDetail extends React.Component {
         if(!this.props.task.isFetching)
             return <ButtonText>Salvar</ButtonText>;
         else
-            return <span>Loading...</span>
+            return <Dots size={12} color={Colors.LIGHT_PURPLE}/>
     }
 
     render() {
@@ -121,7 +123,8 @@ class TaskDetail extends React.Component {
 
 export default withRouter(connect(
     state => ({
-        task: state.task
+        task: state.task,
+        user: state.user
     }),
     dispatch => ({
         taskActions: bindActionCreators(taskActions, dispatch)

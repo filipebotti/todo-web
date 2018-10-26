@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Button, Input, ButtonText } from '../shared';
+import { Button, Input, ButtonText, Colors } from '../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, withRouter } from 'react-router-dom';
 import * as authActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { USER } from '../../services/config';
+import Dots from 'react-activity/lib/Dots';
+import 'react-activity/lib/Dots/Dots.css';
 
 const Container = styled.div`
     
@@ -47,7 +49,7 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            loading: false
+            loading: true
         }
 
         this.handleLogin = this.handleLogin.bind(this);
@@ -90,7 +92,7 @@ class Login extends React.Component {
         if(!this.props.auth.isAuthenticating)
             return <ButtonText>Entrar</ButtonText>;
         else
-            return <span>Loading..</span>
+            return <Dots size={12} color={Colors.LIGHT_PURPLE}/>;
     }
 
     render() {
@@ -98,7 +100,7 @@ class Login extends React.Component {
         if(this.state.loading)
             return (
                 <Container>
-                    <span>loading...</span>
+                    <Dots size={12} color={Colors.DARK_GREY}/>
                 </Container>
             );
         else

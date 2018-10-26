@@ -12,6 +12,7 @@
     "os": "^0.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
+    "react-activity": "^1.2.2",
     "react-dom": "^16.6.0",
     "react-native": "0.56.0",
     "react-redux": "^5.0.7",

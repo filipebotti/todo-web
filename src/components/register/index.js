@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Button, Input, ButtonText } from '../shared';
+import { Button, Input, ButtonText, Colors } from '../shared';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as registerActions from '../../actions/register';
+import Dots from 'react-activity/lib/Dots';
+import 'react-activity/lib/Dots/Dots.css';
 
 const Container = styled.div`
     
@@ -68,7 +70,7 @@ class Register extends React.Component {
             return false;
         }
 
-        if(this.props.auth.isRegistering && nextProps.user.isAuthenticated) {
+        if(this.props.user.isRegistering && nextProps.user.isAuthenticated) {
             this.props.history.push("/");
             return false;
         }
@@ -80,7 +82,7 @@ class Register extends React.Component {
         if(!this.props.user.isRegistering)
             return <ButtonText>Entrar</ButtonText>;
         else
-            return <span>Loading...</span>
+            return <Dots size={12} color={Colors.LIGHT_PURPLE}/>;
     }
 
     render() {
