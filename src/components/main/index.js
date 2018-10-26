@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../../actions/app';
 
-// import TaskList from '../task-list';
+import TaskList from '../task-list';
 
 const Container = styled.div`
     display: flex;
@@ -69,9 +69,7 @@ class Main extends React.Component {
                         <FontAwesomeIcon icon="sign-out-alt" style={{color: 'white', fontSize: "22px"}}/>
                     </SignOutButton>
                 </Header>
-                <div style={{flex:1}}>
-                    {/* <TaskList/> */}
-                </div>
+                <TaskList/>
             </Container>
         )
     }

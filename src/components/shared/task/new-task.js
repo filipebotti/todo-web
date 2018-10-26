@@ -2,23 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { Colors } from '../colors';
 import TaskContainer from './container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TaskInput = styled.input`
     flex: 1;
-    fontSize: 18px;
-    marginLeft: 10px;
+    font-size: 14px;
+    margin-left: 10px;
     color: ${Colors.DARK_GREY}
+    border: none;
+
+    :focus {
+        outline: none;
+    }
 `;
 
-const NewTask = ({ value, onChangeText, onSubmitEditing, textRef }) => {
+const NewTask = ({ value, onChange, onSubmitEditing, textRef }) => {
     return (
         <TaskContainer>
-            {/* <FontAwesome style={{fontSize: 24, color: Colors.DARK_GREY}}>{Icons.plus}</FontAwesome> */}
+            <FontAwesomeIcon icon="plus" style={{fontSize: '20px', color: Colors.DARK_GREY }}/>
             <TaskInput 
                 placeholder={"Nova Tarefa..."}
                 value={value}
-                onChangeText={onChangeText}
-                onSubmitEditing={onSubmitEditing}
+                onChange={onChange}
+                onKeyPress={onSubmitEditing}
                 ref={textRef}
                 blurOnSubmit={false}
             />                    

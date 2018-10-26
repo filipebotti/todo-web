@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../shared';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types'
 import TaskContainer from './container';
 
+
 const TaskText = styled.span`
-    fontSize: 18;
+    font-size: 14px;
     color: ${props => props.isProcessing && Colors.LIGHT_PURPLE || Colors.DARK_GREY};
-    flex: 1;
-    marginLeft: 10px;
+    margin-left: 10px;
+`;
+
+const ButtonWrapper = styled.button`
+    outline: none;
+    border:none;
+    display: flex;
+    background-color: transparent;
 `;
 
 class Task extends React.Component {
@@ -18,52 +26,43 @@ class Task extends React.Component {
 
         this.state = {
             isChecked: props.task.deleted_at != null,
-            // animOpacity: new Animated.Value(0) 
         }
 
         this.renderCheckIcon = this.renderCheckIcon.bind(this);
         this.onChecked = this.onChecked.bind(this);
     }
 
-    componentDidMount() {
-        // Animated.timing(this.state.animOpacity,{
-        //     toValue: 1,
-        //     timing: 500
-        // }).start();
+    renderCheckIcon() {
+        const color = this.props.task.isProcessing && Colors.LIGHT_PURPLE || Colors.DARK_GREY;
+        if(this.state.isChecked)
+            return <FontAwesomeIcon icon="check-square" style={{fontSize: '24px', color }}/>
+        else
+            return <FontAwesomeIcon icon="square" style={{fontSize: '24px', color }}/>
     }
-
-    // renderCheckIcon() {
-    //     color = this.props.task.isProcessing && Colors.LIGHT_PURPLE || Colors.DARK_GREY;
-    //     if(this.state.isChecked)
-    //         return <FontAwesome style={{fontSize: 24, color }}>{Icons.checkSquareO}</FontAwesome>
-    //     else
-    //         return <FontAwesome style={{fontSize: 24, color }}>{Icons.squareO}</FontAwesome>
-    // }
 
     onChecked() {
         this.setState ({
             isChecked: true
         });
 
-        // Animated.timing(this.state.animOpacity, {
-        //     toValue: 0,
-        //     timing: 500
-        // }).start(() => {
-        //     if(this.props.onCheckTask)
-        //         this.props.onCheckTask(this.props.task);
-        // });
+        if(this.props.onCheckTask)
+            this.props.onCheckTask(this.props.task);
     }
 
     render() {
         return (
-            <button onPress={this.props.onPress}>
-                <TaskContainer opacity={this.state.animOpacity}>
-                    <button disabled={this.state.isChecked || this.props.task.isProcessing} onPress={this.onChecked}>
-                        
+            <ButtonWrapper onClick={this.props.onPress}>
+                <TaskContainer>
+                    <button 
+                        disabled={this.state.isChecked || this.props.task.isProcessing} 
+                        onClick={this.onChecked}
+                        style={{ border: 'none', outline: 'none', padding: 0}}
+                    >
+                        {this.renderCheckIcon()}
                     </button>
                     <TaskText isProcessing={this.props.task.isProcessing}>{this.props.task.description}</TaskText>           
                 </TaskContainer>
-            </button>
+            </ButtonWrapper>
         )
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import  { faCheckSquare, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import  { faCheckSquare, faSignOutAlt, faSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './components/login';
@@ -24,7 +24,7 @@ const store = createStore(
 
 sagaMiddleware.run(sagas);
 
-library.add(faCheckSquare, faSignOutAlt);
+library.add(faCheckSquare, faSignOutAlt, faSquare, faPlus);
 
 
 
@@ -33,7 +33,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div style={{ height: "100vh", width: "100vw" }}>
+          <div style={{ height: "100vh", width: "100vw", backgroundColor: "#EFEFEF" }}>
             <Route path="/auth" exact component={Login}/>        
             <Route path="/register" component={Register} />
             <Route path="/" component={Main}/>

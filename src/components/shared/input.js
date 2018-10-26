@@ -12,6 +12,11 @@ const StyledInput = styled.input`
     border-bottom-width: 2px;
     border-bottom-color: #673AB7;
     color: ${Colors.DARK_GREY};
+    background-color: transparent;
+
+    :focus {
+        outline: none;
+    }
 `;
 
 const Input = ({value, onChange, placeholder, style }) => {
