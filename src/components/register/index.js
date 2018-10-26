@@ -106,6 +106,7 @@ class Register extends React.Component {
                         placeholder={"Senha"}
                         onChange={({target}) => this.setState({password: target.value})}
                         value={this.state.password}
+                        type="password"
                     />
                     <Button text={"Registrar"}
                         onPress={this.handleRegister}

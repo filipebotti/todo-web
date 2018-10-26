@@ -56,9 +56,7 @@ class Main extends React.Component {
     render() {
         if (!this.props.user.isAuthenticated)
             return <Redirect
-                        to={{
-                            pathname: "/auth",
-                        }}
+                        to="/auth"
                     />
 
         return (

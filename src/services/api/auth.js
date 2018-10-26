@@ -3,7 +3,7 @@ import { getConfig } from './index';
 export async function auth(credentials) {
     
     const response = await fetch(
-        `/auth`,
+        `/api/auth`,
         getConfig('POST', credentials)
     );
     

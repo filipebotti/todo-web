@@ -3,7 +3,7 @@ import { getConfig } from './index';
 export function fetchTasks() {
 
     return fetch(        
-        '/tasks',
+        '/api/tasks',
         getConfig()
     ).then(response => response.json())
     .catch(error => Promise.reject(error));
@@ -12,7 +12,7 @@ export function fetchTasks() {
 export async function addTask(task) {
 
     const response = await fetch(
-        `/tasks`,
+        `/api/tasks`,
         getConfig('POST', task)
     );
 
@@ -22,7 +22,7 @@ export async function addTask(task) {
 export async function removeTask(task) {
     
     const response = await fetch(
-        `/tasks/${task.id}`,
+        `/api/tasks/${task.id}`,
         getConfig('DELETE')
     )
 
@@ -31,7 +31,7 @@ export async function removeTask(task) {
 
 export async function updateTask(task) {
     const response = await fetch(
-        `/tasks/${task.id}`,
+        `/api/tasks/${task.id}`,
         getConfig('PUT', task)
     )
 

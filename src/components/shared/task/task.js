@@ -9,14 +9,19 @@ import TaskContainer from './container';
 const TaskText = styled.span`
     font-size: 14px;
     color: ${props => props.isProcessing ? Colors.LIGHT_PURPLE : Colors.DARK_GREY};
-    margin-left: 10px;
 `;
 
 const ButtonWrapper = styled.button`
+    border: none;
     outline: none;
-    border:none;
+    padding: 0px;
+    justify-content: flex-start;
+`;
+
+const FlexButtonWrapper = styled(ButtonWrapper)`
     display: flex;
-    background-color: transparent;
+    flex: 1;
+    margin-left: 10px;
 `;
 
 class Task extends React.Component {
@@ -51,18 +56,21 @@ class Task extends React.Component {
 
     render() {
         return (
-            <ButtonWrapper onClick={this.props.onPress}>
-                <TaskContainer>
-                    <button 
-                        disabled={this.state.isChecked || this.props.task.isProcessing} 
-                        onClick={this.onChecked}
-                        style={{ border: 'none', outline: 'none', padding: 0}}
-                    >
-                        {this.renderCheckIcon()}
-                    </button>
+            <TaskContainer>
+                <ButtonWrapper 
+                    disabled={this.state.isChecked || this.props.task.isProcessing} 
+                    onClick={this.onChecked}
+                >
+                    {this.renderCheckIcon()}
+                </ButtonWrapper>
+                <FlexButtonWrapper 
+                    disabled={this.state.isChecked || this.props.task.isProcessing} 
+                    onClick={this.props.onPress}
+                    style={{display: "flex"}}
+                >
                     <TaskText isProcessing={this.props.task.isProcessing}>{this.props.task.description}</TaskText>           
-                </TaskContainer>
-            </ButtonWrapper>
+                </FlexButtonWrapper>
+            </TaskContainer>
         )
     }
 }

@@ -32,6 +32,8 @@ export default function(state = initialState, action) {
             return { ...state, isFetching: false }
         case types.TASK_UPDATE_FAIL:
             return { ...state, isFetching: false, error: action.error }
+        case types.SIGN_OUT: 
+            return { ...state, tasks };
         default:
             return state;
     }

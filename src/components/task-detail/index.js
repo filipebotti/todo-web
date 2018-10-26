@@ -45,8 +45,6 @@ class TaskDetail extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log(props);
-
         this.state = {
             description: props.location.state.item.description,
         }
