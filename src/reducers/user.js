@@ -16,7 +16,9 @@ export default function(state = initialState, action) {
         case types.SIGN_UP_SUCCESS:
             return { ...state, isRegistering: false, isAuthenticated: true }
         case types.SIGN_UP_FAIL: 
-            return { ...state, isRegistering: false, error: action.error }        
+            return { ...state, isRegistering: false, error: action.error }
+        case types.SIGN_OUT:
+            return { ...state, isAuthenticated: false }
         default:
             return state;
     }

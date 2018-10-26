@@ -65,6 +65,12 @@ class Register extends React.Component {
     componentWillUpdate(nextProps) {
         if(nextProps.user.error && this.props.user.isRegistering) {
             alert(nextProps.user.error);
+            return false;
+        }
+
+        if(this.props.auth.isRegistering && nextProps.user.isAuthenticated) {
+            this.props.history.push("/");
+            return false;
         }
 
         return true;
@@ -101,7 +107,7 @@ class Register extends React.Component {
                     />
                     <Button text={"Registrar"}
                         onPress={this.handleRegister}
-                        // disabled={this.props.user.isRegistering}
+                        disabled={this.props.user.isRegistering}
                     >
                         {this.renderRegisterButtonChildren()}                    
                     </Button>

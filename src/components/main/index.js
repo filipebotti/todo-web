@@ -50,7 +50,7 @@ class Main extends React.Component {
     }
 
     handleSignOut() {
-        // this.props.appActions.signOut();
+        this.props.appActions.signOut();
     }
 
     render() {
@@ -60,6 +60,7 @@ class Main extends React.Component {
                             pathname: "/auth",
                         }}
                     />
+
         return (
             <Container>
                 <Header>   

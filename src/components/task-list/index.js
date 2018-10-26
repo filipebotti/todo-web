@@ -66,7 +66,7 @@ class TaskList extends React.Component {
                             key={item.uuid} 
                             task={item} 
                             onCheckTask={() => this.handleRemoveTask(item)}
-                            // onPress={() => Actions.taskDetail({ item })}
+                            onPress={() => { this.props.history.push('/task-detail', { item })}}
                         />
                     )
                 })}

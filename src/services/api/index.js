@@ -9,7 +9,6 @@ export function getConfig(method = 'GET', body) {
     headers.append("Content-Type", "application/json; charset=utf-8");
     headers.append("Authorization", USER.token || "");
 
-    console.log(JSON.stringify(body));
     return {
         headers,
         method,

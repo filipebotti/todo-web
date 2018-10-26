@@ -55,16 +55,12 @@ class Login extends React.Component {
 	}
 
     componentDidMount() {
-        // let credentials = USER.getStoredCredentials()
-        // .then(credentials => {
-            
-        //     if (credentials) {
-        //         this.props.authActions.auth(credentials);
-                
-        //     } else 
-        //         this.setState({ loading: false });
-        // })
-        // .catch(() => this.setState({ loading: false }));
+        let credentials = USER.getStoredCredentials();
+
+        if (credentials)
+            this.props.authActions.auth(credentials);
+        else 
+            this.setState({ loading: false });
     }
 
     componentWillUpdate(nextProps) {
@@ -126,12 +122,12 @@ class Login extends React.Component {
                         />
                         <Button 
                             onPress={this.handleLogin}
-                            // disabled={this.props.auth.isAuthenticating}
+                            disabled={this.props.auth.isAuthenticating}
                         >
                             {this.renderLoginButtonChildren()}
                         </Button>
                     </FormWrapper>                    
-                    <Link to="/register" style={{color: '#424242', textDecoration: "none"}}>Cadastre-se</Link>                        
+                    <Link to="/register" style={{color: '#424242', textDecoration: "none"}}>Cadastre-se</Link>
                     
                 </Container>
             );

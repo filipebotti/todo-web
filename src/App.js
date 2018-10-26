@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './components/login';
 import Register from './components/register';
 import Main from './components/main';
+import TaskDetail from './components/task-detail';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -36,6 +37,7 @@ class App extends Component {
           <div style={{ height: "100vh", width: "100vw", backgroundColor: "#EFEFEF" }}>
             <Route path="/auth" exact component={Login}/>        
             <Route path="/register" component={Register} />
+            <Route path="/task-detail" component={TaskDetail}/>
             <Route path="/" component={Main}/>
           </div>
         </Router>

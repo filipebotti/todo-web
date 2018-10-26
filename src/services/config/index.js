@@ -2,16 +2,14 @@
 let USER = {
     token: '',
     storeCredentials: (credentials) => {
-        // AsyncStorage.setItem('credentials', JSON.stringify(credentials))
+        localStorage.setItem('credentials', JSON.stringify(credentials));
     },
     getStoredCredentials: () => {
 
-        // return AsyncStorage.getItem('credentials')
-        // .then(data => JSON.parse(data))
-        // .catch(error => console.log(error));
+        return JSON.parse(localStorage.getItem('credentials'));
     },
     clear: () => {
-        // AsyncStorage.removeItem('credentials');
+        localStorage.removeItem('credentials');
     }
 }
 
