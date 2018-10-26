@@ -1,10 +1,10 @@
-import { takeLatest, takeEvery } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import { USER } from '../services/config';
 import * as types from '../actions';
 
 function* signOut() {
 
-    USER.clear();
+    yield USER.clear();
 }
 
 export default function* () {

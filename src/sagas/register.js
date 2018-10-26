@@ -8,11 +8,11 @@ function* signUp(action) {
         
         if(!data.access_token) {
             if(data.name) 
-                throw "Nome não pode ficar em branco" 
+                throw new Error("Nome não pode ficar em branco");
             if(data.username) 
-                throw "Usuário não pode ficar em branco" 
+                throw new Error("Usuário não pode ficar em branco");
             if(data.password) 
-                throw "Senha não pode ficar em branco" 
+                throw new Error("Senha não pode ficar em branco");
         }
             
 

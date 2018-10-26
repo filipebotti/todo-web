@@ -8,7 +8,7 @@ import TaskContainer from './container';
 
 const TaskText = styled.span`
     font-size: 14px;
-    color: ${props => props.isProcessing && Colors.LIGHT_PURPLE || Colors.DARK_GREY};
+    color: ${props => props.isProcessing ? Colors.LIGHT_PURPLE : Colors.DARK_GREY};
     margin-left: 10px;
 `;
 
@@ -33,7 +33,7 @@ class Task extends React.Component {
     }
 
     renderCheckIcon() {
-        const color = this.props.task.isProcessing && Colors.LIGHT_PURPLE || Colors.DARK_GREY;
+        const color = this.props.task.isProcessing ? Colors.LIGHT_PURPLE : Colors.DARK_GREY;
         if(this.state.isChecked)
             return <FontAwesomeIcon icon="check-square" style={{fontSize: '24px', color }}/>
         else

@@ -1,4 +1,4 @@
-import { API_URL, getConfig, USER } from './index';
+import { getConfig } from './index';
 
 export function fetchTasks() {
 

@@ -6,7 +6,7 @@ import uuid from 'uuid/v4';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as taskActions from '../../actions/task';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const Container = styled.div`
     display:flex;
@@ -32,7 +32,7 @@ class TaskList extends React.Component {
     }
 
     handleNewTask(event) {
-        if(event.key == 'Enter' && this.state.newTaskDescription) {
+        if(event.key === 'Enter' && this.state.newTaskDescription) {
             this.props.taskActions.addTask({
                 description: this.state.newTaskDescription,
                 uuid: uuid(),

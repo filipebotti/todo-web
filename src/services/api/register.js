@@ -1,4 +1,4 @@
-import { API_URL, getConfig } from './index';
+import { getConfig } from './index';
 
 export async function signUp(payload) {
 

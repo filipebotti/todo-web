@@ -20,11 +20,11 @@ export default function(state = initialState, action) {
             const newTasks = [ ...state.tasks, action.task ];
             return { ...state, tasks: newTasks }
         case types.TASK_ADD_SUCCESS:
-            tasks = state.tasks.filter(item => item.uuid != action.task.uuid);
+            tasks = state.tasks.filter(item => item.uuid !== action.task.uuid);
             tasks = [ ...tasks, action.task ];
             return { ...state, tasks }
         case types.TASK_REMOVE:
-            tasks = state.tasks.filter(item => item.uuid != action.task.uuid)
+            tasks = state.tasks.filter(item => item.uuid !== action.task.uuid)
             return { ...state, tasks }
         case types.TASK_UPDATE:
             return {...state, isFetching: true, error: ''}
