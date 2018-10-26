@@ -56,12 +56,11 @@ class Register extends React.Component {
 
     handleRegister() {
         this.props.registerActions.signUp({
-            user: {
                 username: this.state.username,
                 name: this.state.name,
                 password: this.state.password
             }
-        });
+        );
     }
 
     componentWillUpdate(nextProps) {
